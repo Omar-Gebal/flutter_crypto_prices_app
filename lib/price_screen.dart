@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+const mainColor = Colors.deepPurple;
+
 class PriceScreen extends StatefulWidget {
   @override
   _PriceScreenState createState() => _PriceScreenState();
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  String selectedCurrency = 'USD';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,7 @@ class _PriceScreenState extends State<PriceScreen> {
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
             child: Card(
-              color: Colors.lightBlueAccent,
+              color: mainColor,
               elevation: 5.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
@@ -41,8 +44,25 @@ class _PriceScreenState extends State<PriceScreen> {
             height: 150.0,
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: null,
+            color: mainColor,
+            child: DropdownButton<String>(
+              value: selectedCurrency,
+              onChanged: (value) {
+                setState(() {
+                  selectedCurrency = value;
+                });
+              },
+              items: [
+                DropdownMenuItem(
+                  child: Text('USD'),
+                  value: 'USD',
+                ),
+                DropdownMenuItem(
+                  child: Text('EGP'),
+                  value: 'EGP',
+                )
+              ],
+            ),
           ),
         ],
       ),
